@@ -5,6 +5,7 @@ const chats = require('./data/data');
 const connectDb = require('./config/db');
 const colors = require('colors');
 const app = express();
+app.use(express.json());
 app.use(cors())
 const userRoutes = require('./routes/userRoutes');
 dotenv.config();
