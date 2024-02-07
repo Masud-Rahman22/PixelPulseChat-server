@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 const userRoutes = require('./routes/userRoutes');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 dotenv.config();
 connectDb();
 
@@ -17,6 +18,10 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/user',userRoutes)
+
+// Error Handling middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
