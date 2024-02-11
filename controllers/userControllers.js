@@ -50,7 +50,15 @@ const authUser = asyncHandler(async(req,res)=>{
             pic: user.pic,
             token: generateToken(user._id),
         })
+    }else{
+        res.status(401)
+        throw new Error("Invalid email or password")
     }
 })
 
-module.exports = {registerUser, authUser}
+const allUsers = asyncHandler(async(req,res)=>{
+    const keyword = req.query
+    console.log(keyword)
+})
+
+module.exports = {registerUser, authUser, allUsers}
